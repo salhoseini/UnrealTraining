@@ -70,7 +70,17 @@ void AGun::PullTrigger() {
 	FVector ShotDirection;
 	
 	if (GunTrace(HitResult, ShotDirection)) {
-		
+		float DamageToApply = 0;
+		FString BoneName = HitResult.BoneName.ToString();
+		if (BoneName.Contains("neck")) {
+			DamageToApply = HeadShotDamage;
+		}
+		else if (BoneName.Contains("spine")) {
+			DamageToApply = Damage;
+		}
+		else {
+			DamageToApply = LimbDamage;
+		}
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactFlash, GetImpactEffectLocation(HitResult.ImpactPoint, ShotDirection), ShotDirection.Rotation(), true);
 		UGameplayStatics::SpawnSoundAtLocation(GetWorld(), ImpactSound, GetImpactEffectLocation(HitResult.ImpactPoint, ShotDirection), ShotDirection.Rotation());
 		AActor* hitActor = HitResult.GetActor();
@@ -84,8 +94,8 @@ void AGun::PullTrigger() {
 		if (HitCharacter->IsDead()) {
 			return;
 		}
-		FPointDamageEvent DamageEvent(Damage, HitResult, ShotDirection, nullptr);
-		hitActor->TakeDamage(Damage, DamageEvent, GetOwnerController(), this);
+		FPointDamageEvent DamageEvent(DamageToApply, HitResult, ShotDirection, nullptr);
+		hitActor->TakeDamage(DamageToApply, DamageEvent, GetOwnerController(), this);
 	}
 
 }
