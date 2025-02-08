@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/DamageEvents.h"
+#include "ShooterCharacter.h"
 
 // Sets default values
 AGun::AGun()
@@ -74,6 +75,13 @@ void AGun::PullTrigger() {
 		UGameplayStatics::SpawnSoundAtLocation(GetWorld(), ImpactSound, GetImpactEffectLocation(HitResult.ImpactPoint, ShotDirection), ShotDirection.Rotation());
 		AActor* hitActor = HitResult.GetActor();
 		if (hitActor == nullptr) {
+			return;
+		}
+		AShooterCharacter* HitCharacter = Cast<AShooterCharacter>(hitActor);
+		if (HitCharacter == nullptr) {
+			return;
+		}
+		if (HitCharacter->IsDead()) {
 			return;
 		}
 		FPointDamageEvent DamageEvent(Damage, HitResult, ShotDirection, nullptr);

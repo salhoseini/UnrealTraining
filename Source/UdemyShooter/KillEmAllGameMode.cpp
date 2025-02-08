@@ -12,7 +12,9 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
 	APlayerController* PlayerController = Cast<APlayerController>(PawnKilled->GetController());
 	if (PlayerController != nullptr) {
 		EndGame(false);
+		return;
 	}
+	remainingPlayerCount--;
 	for (AShooterAIController* AIController : TActorRange<AShooterAIController>(GetWorld())) {
 		if (AIController->IsDead() == false) {
 			return;
@@ -20,6 +22,22 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
 	}
 	EndGame(true);
 	
+}
+
+FText AKillEmAllGameMode::GetRemainingPlayerText() const
+{
+	return FText::Format(FText::FromString("{0} / {1}"), remainingPlayerCount, totalPlayerCount);
+}
+
+void AKillEmAllGameMode::BeginPlay()
+{
+	for (AController* Controller : TActorRange<AController>(GetWorld())) {
+		if (Controller->IsPlayerController()) {
+			continue;
+		}
+		totalPlayerCount++;
+		remainingPlayerCount++;
+	}
 }
 
 void AKillEmAllGameMode::EndGame(bool isPlayerWinner)
