@@ -73,6 +73,11 @@ private:
 	UPROPERTY()
 		AGun* Gun;
 
+	UPROPERTY(EditAnywhere)
+		float ShootInterval = 0.5f;
+
+	float ShootTimePassed = ShootInterval;
+
 
 public:	
 

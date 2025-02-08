@@ -33,6 +33,7 @@ void AShooterCharacter::BeginPlay()
 void AShooterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	ShootTimePassed += DeltaTime;
 
 }
 
@@ -78,7 +79,10 @@ float AShooterCharacter::TakeDamage(float DamageAmount, FDamageEvent const& Dama
 
 void AShooterCharacter::Shoot()
 {
-	Gun->PullTrigger();
+	if (ShootTimePassed > ShootInterval) {
+		Gun->PullTrigger();
+		ShootTimePassed = 0;
+	}
 }
 
 void AShooterCharacter::Move(const FInputActionValue& MoveValue)

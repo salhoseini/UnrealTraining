@@ -25,11 +25,13 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY()
-		int totalPlayerCount;
+	
+	int totalPlayerCount;
+	
+	int remainingPlayerCount;
 
 	UPROPERTY()
-		int remainingPlayerCount;
+		TArray<AController*> AllControllers;
 
 	void EndGame(bool isPlayerWinner);
 	
