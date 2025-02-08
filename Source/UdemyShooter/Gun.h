@@ -49,6 +49,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float Damage = 10;
+	UPROPERTY(EditAnywhere)
+		float HeadShotDamage = 30;
+	UPROPERTY(EditAnywhere)
+		float LimbDamage = 10;
 
 	const float IMPACT_HIT_OFFSET = 5;
 

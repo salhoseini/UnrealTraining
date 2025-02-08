@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/DamageEvents.h"
+#include "ShooterCharacter.h"
 
 // Sets default values
 AGun::AGun()
@@ -69,15 +70,32 @@ void AGun::PullTrigger() {
 	FVector ShotDirection;
 	
 	if (GunTrace(HitResult, ShotDirection)) {
-		
+		float DamageToApply = 0;
+		FString BoneName = HitResult.BoneName.ToString();
+		if (BoneName.Contains("neck")) {
+			DamageToApply = HeadShotDamage;
+		}
+		else if (BoneName.Contains("spine")) {
+			DamageToApply = Damage;
+		}
+		else {
+			DamageToApply = LimbDamage;
+		}
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactFlash, GetImpactEffectLocation(HitResult.ImpactPoint, ShotDirection), ShotDirection.Rotation(), true);
 		UGameplayStatics::SpawnSoundAtLocation(GetWorld(), ImpactSound, GetImpactEffectLocation(HitResult.ImpactPoint, ShotDirection), ShotDirection.Rotation());
 		AActor* hitActor = HitResult.GetActor();
 		if (hitActor == nullptr) {
 			return;
 		}
-		FPointDamageEvent DamageEvent(Damage, HitResult, ShotDirection, nullptr);
-		hitActor->TakeDamage(Damage, DamageEvent, GetOwnerController(), this);
+		AShooterCharacter* HitCharacter = Cast<AShooterCharacter>(hitActor);
+		if (HitCharacter == nullptr) {
+			return;
+		}
+		if (HitCharacter->IsDead()) {
+			return;
+		}
+		FPointDamageEvent DamageEvent(DamageToApply, HitResult, ShotDirection, nullptr);
+		hitActor->TakeDamage(DamageToApply, DamageEvent, GetOwnerController(), this);
 	}
 
 }
