@@ -54,6 +54,7 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PEI->BindAction(GamepadLookAction, ETriggerEvent::Triggered, this, &AShooterCharacter::GamepadLook);
 	PEI->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
 	PEI->BindAction(ShootGunAction, ETriggerEvent::Triggered, this, &AShooterCharacter::ShootGun);
+	PEI->BindAction(InteractAction, ETriggerEvent::Triggered, this, &AShooterCharacter::Pickup);
 
 }
 
@@ -128,6 +129,11 @@ void AShooterCharacter::ShootGun(const FInputActionValue& ShootValue)
 {
 	Shoot();
 }
+
+void AShooterCharacter::Pickup(const FInputActionValue& PickupValue) {
+	UE_LOG(LogTemp, Warning, TEXT("Pick up"));
+}
+
 
 bool AShooterCharacter::IsDead() const {
 	return Health <= 0;
