@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "DetectionCone.h"
 #include "ShooterCharacter.generated.h"
 
 
@@ -101,5 +102,8 @@ public:
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 	void Shoot();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components")
+		UDetectionCone* DetectionCone;
 
 };

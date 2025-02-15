@@ -28,7 +28,6 @@ void UDetectionCone::BeginPlay()
 void UDetectionCone::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
 	FOverlapResult OverlapResult;
 	if (GetGadgetInReach(OverlapResult)) {
 		FVector ToGadgetVector = OverlapResult.GetActor()->GetActorLocation() - GetComponentLocation();
@@ -44,7 +43,7 @@ void UDetectionCone::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 				UE_LOG(LogTemp, Error, TEXT("Item is not of type Gadget"));
 			}
 			else {
-				UE_LOG(LogTemp, Warning, TEXT("Found a Gadget %s"), *DetectedGadget->GetName());
+				//UE_LOG(LogTemp, Warning, TEXT("Found a Gadget %s"), *DetectedGadget->GetName());
 			}
 		}
 	}
