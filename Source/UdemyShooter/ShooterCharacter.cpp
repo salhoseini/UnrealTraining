@@ -131,7 +131,13 @@ void AShooterCharacter::ShootGun(const FInputActionValue& ShootValue)
 }
 
 void AShooterCharacter::Pickup(const FInputActionValue& PickupValue) {
-	UE_LOG(LogTemp, Warning, TEXT("Pick up"));
+	if (DetectionCone == nullptr) {
+		UE_LOG(LogTemp, Error, TEXT("DetectionCone not setup"));
+		return;
+	}
+	if (DetectionCone->GetDetectedGadget() != nullptr) {
+		DetectionCone->GetDetectedGadget()->Consume();
+	}
 }
 
 

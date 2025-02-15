@@ -23,8 +23,9 @@ void AGadgetSpawner::BeginPlay()
 void AGadgetSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (GadgetSpawned() == false) {
-		SpawnGadget();
+	if (GadgetSpawned() == false && GetWorldTimerManager().IsTimerActive(SpawnTimer) == false) {
+		UE_LOG(LogTemp, Error, TEXT("Spawning Gadget"));
+		GetWorldTimerManager().SetTimer(SpawnTimer, this, &AGadgetSpawner::SpawnGadget, SpawnInterval);
 	}
 }
 

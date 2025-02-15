@@ -25,3 +25,8 @@ void AGadget::Tick(float DeltaTime)
 
 }
 
+void AGadget::Consume()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Consuming Gadget"));
+}
+

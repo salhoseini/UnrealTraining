@@ -55,6 +55,11 @@ void UDetectionCone::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	// ...
 }
 
+AGadget* UDetectionCone::GetDetectedGadget() const
+{
+	return DetectedGadget;
+}
+
 bool UDetectionCone::GetGadgetInReach(FOverlapResult& OutOverlapResult) const
 {
 	TArray<FOverlapResult> OverlapResults;
