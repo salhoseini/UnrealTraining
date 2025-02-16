@@ -102,6 +102,10 @@ public:
 
 	void Shoot();
 
+	void UpdateHealth(float UpdateValue) {
+		Health = FMath::Clamp(Health + UpdateValue, 0, MaxHealth);
+	}
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components")
 		class UDetectionCone* DetectionCone;
 
