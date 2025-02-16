@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "DetectionCone.h"
 #include "ShooterCharacter.generated.h"
 
 
@@ -104,6 +103,6 @@ public:
 	void Shoot();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components")
-		UDetectionCone* DetectionCone;
+		class UDetectionCone* DetectionCone;
 
 };

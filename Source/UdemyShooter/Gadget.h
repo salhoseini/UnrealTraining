@@ -23,6 +23,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void Consume();
+	virtual void Consume(class AShooterCharacter* ShooterCharacter);
 
 };

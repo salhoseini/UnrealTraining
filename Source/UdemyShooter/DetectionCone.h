@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "Gadget.h"
 #include "DetectionCone.generated.h"
 
+class AGadget;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class UDEMYSHOOTER_API UDetectionCone : public USceneComponent

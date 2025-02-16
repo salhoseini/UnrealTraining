@@ -8,6 +8,8 @@
 #include "Gun.h"
 #include "Components/CapsuleComponent.h"
 #include "SimpleShooterGameMode.h"
+#include "DetectionCone.h"
+#include "Gadget.h"
 
 // Sets default values
 AShooterCharacter::AShooterCharacter()
@@ -137,7 +139,7 @@ void AShooterCharacter::Pickup(const FInputActionValue& PickupValue) {
 		return;
 	}
 	if (DetectionCone->GetDetectedGadget() != nullptr) {
-		DetectionCone->GetDetectedGadget()->Consume();
+		DetectionCone->GetDetectedGadget()->Consume(this);
 	}
 }
 

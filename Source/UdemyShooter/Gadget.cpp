@@ -2,6 +2,7 @@
 
 
 #include "Gadget.h"
+#include "ShooterCharacter.h"
 
 // Sets default values
 AGadget::AGadget()
@@ -25,8 +26,9 @@ void AGadget::Tick(float DeltaTime)
 
 }
 
-void AGadget::Consume()
+void AGadget::Consume(AShooterCharacter* ShooterCharacter)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Consuming Gadget"));
+	UE_LOG(LogTemp, Warning, TEXT("Consuming Gadget %s") , *ShooterCharacter->GetName());
+	Destroy();
 }
 

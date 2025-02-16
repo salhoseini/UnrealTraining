@@ -2,6 +2,7 @@
 
 
 #include "DetectionCone.h"
+#include "Gadget.h"
 
 // Sets default values for this component's properties
 UDetectionCone::UDetectionCone()

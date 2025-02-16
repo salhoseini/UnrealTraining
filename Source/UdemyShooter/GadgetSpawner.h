@@ -40,7 +40,7 @@ private:
 	}
 
 	bool GadgetSpawned() const {
-		return SpawnedGadget != nullptr;
+		return SpawnedGadget != nullptr && IsValid(SpawnedGadget);
 	}
 
 };
