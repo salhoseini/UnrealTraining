@@ -8,13 +8,16 @@
 #include "Gun.h"
 #include "Components/CapsuleComponent.h"
 #include "SimpleShooterGameMode.h"
+#include "DetectionCone.h"
+#include "Gadget.h"
 
 // Sets default values
 AShooterCharacter::AShooterCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	DetectionCone = CreateDefaultSubobject<UDetectionCone>(TEXT("DetectionCone"));
+	DetectionCone->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned
@@ -54,6 +57,7 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PEI->BindAction(GamepadLookAction, ETriggerEvent::Triggered, this, &AShooterCharacter::GamepadLook);
 	PEI->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
 	PEI->BindAction(ShootGunAction, ETriggerEvent::Triggered, this, &AShooterCharacter::ShootGun);
+	PEI->BindAction(InteractAction, ETriggerEvent::Triggered, this, &AShooterCharacter::Pickup);
 
 }
 
@@ -128,6 +132,17 @@ void AShooterCharacter::ShootGun(const FInputActionValue& ShootValue)
 {
 	Shoot();
 }
+
+void AShooterCharacter::Pickup(const FInputActionValue& PickupValue) {
+	if (DetectionCone == nullptr) {
+		UE_LOG(LogTemp, Error, TEXT("DetectionCone not setup"));
+		return;
+	}
+	if (DetectionCone->GetDetectedGadget() != nullptr) {
+		DetectionCone->GetDetectedGadget()->Consume(this);
+	}
+}
+
 
 bool AShooterCharacter::IsDead() const {
 	return Health <= 0;
