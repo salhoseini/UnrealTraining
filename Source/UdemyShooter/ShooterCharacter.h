@@ -47,6 +47,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 		UInputAction* InteractAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		UInputAction* ReloadAction;
 	
 
 private:
@@ -62,6 +65,8 @@ private:
 	void ShootGun(const FInputActionValue& ShootValue);
 
 	void Pickup(const FInputActionValue& PickupValue);
+
+	void Reload(const FInputActionValue& ReloadValue);
 
 	UPROPERTY(EditDefaultsOnly)
 		float MaxHealth = 100;

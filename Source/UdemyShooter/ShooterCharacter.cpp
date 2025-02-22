@@ -58,6 +58,7 @@ void AShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PEI->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
 	PEI->BindAction(ShootGunAction, ETriggerEvent::Triggered, this, &AShooterCharacter::ShootGun);
 	PEI->BindAction(InteractAction, ETriggerEvent::Triggered, this, &AShooterCharacter::Pickup);
+	PEI->BindAction(ReloadAction, ETriggerEvent::Triggered, this, &AShooterCharacter::Reload);
 
 }
 
@@ -141,6 +142,11 @@ void AShooterCharacter::Pickup(const FInputActionValue& PickupValue) {
 	if (DetectionCone->GetDetectedGadget() != nullptr) {
 		DetectionCone->GetDetectedGadget()->Consume(this);
 	}
+}
+
+void AShooterCharacter::Reload(const FInputActionValue& ReloadValue)
+{
+	Gun->Reload();
 }
 
 

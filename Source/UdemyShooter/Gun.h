@@ -17,6 +17,12 @@ public:
 
 	void PullTrigger();
 
+	void Reload();
+
+	void UpdateAmmoCount(int count) {
+		totalAmmoCount = FMath::Clamp(totalAmmoCount + count, 0, MaxAmmoCount);
+	}
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -53,6 +59,17 @@ private:
 		float HeadShotDamage = 30;
 	UPROPERTY(EditAnywhere)
 		float LimbDamage = 10;
+
+	UPROPERTY(EditAnywhere, Category = "Ammmo")
+		float MaxAmmoCount = 150;
+
+	UPROPERTY(EditAnywhere, Category = "Ammmo")
+		float MagazineCapacity = 30;
+
+	float ammoCount;
+
+	float totalAmmoCount;
+
 
 	const float IMPACT_HIT_OFFSET = 5;
 
