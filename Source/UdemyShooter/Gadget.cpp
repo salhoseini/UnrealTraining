@@ -3,6 +3,7 @@
 
 #include "Gadget.h"
 #include "ShooterCharacter.h"
+#include "GadgetComponent.h"
 
 // Sets default values
 AGadget::AGadget()
@@ -16,7 +17,11 @@ AGadget::AGadget()
 void AGadget::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	GadgetComponent = FindComponentByClass<UGadgetComponent>();
+	if (GadgetComponent == nullptr) {
+		UE_LOG(LogTemp, Error, TEXT("No GadgetComponent Is added to the Gadget Actor"));
+	}
 }
 
 // Called every frame
@@ -29,6 +34,9 @@ void AGadget::Tick(float DeltaTime)
 void AGadget::Consume(AShooterCharacter* ShooterCharacter)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Consuming Gadget %s") , *ShooterCharacter->GetName());
+	if (GadgetComponent != nullptr) {
+		GadgetComponent->ApplyGadgetEffect(ShooterCharacter);
+	}
 	Destroy();
 }
 

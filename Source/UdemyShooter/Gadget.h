@@ -25,4 +25,7 @@ public:
 
 	virtual void Consume(class AShooterCharacter* ShooterCharacter);
 
+private:
+	class UGadgetComponent* GadgetComponent;
+
 };
