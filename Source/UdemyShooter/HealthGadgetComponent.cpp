@@ -8,9 +8,8 @@ UHealthGadgetComponent::UHealthGadgetComponent()
 {
 }
 
-void UHealthGadgetComponent::ApplyGadgetEffect(AShooterCharacter* ShooterCharacter) const
+void UHealthGadgetComponent::ApplyGadgetEffect_Impl(AShooterCharacter* ShooterCharacter)
 {
-	Super::ApplyGadgetEffect(ShooterCharacter);
 	if (ShooterCharacter == nullptr) {
 		return;
 	}

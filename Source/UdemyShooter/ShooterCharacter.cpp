@@ -90,6 +90,11 @@ void AShooterCharacter::Shoot()
 	}
 }
 
+AGun* AShooterCharacter::GetCurrentGun()
+{
+	return Gun;
+}
+
 void AShooterCharacter::Move(const FInputActionValue& MoveValue)
 {
 	// input is a Vector2D

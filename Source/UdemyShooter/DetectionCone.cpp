@@ -43,9 +43,6 @@ void UDetectionCone::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 			if (DetectedGadget == nullptr) {
 				UE_LOG(LogTemp, Error, TEXT("Item is not of type Gadget"));
 			}
-			else {
-				//UE_LOG(LogTemp, Warning, TEXT("Found a Gadget %s"), *DetectedGadget->GetName());
-			}
 		}
 	}
 	else {

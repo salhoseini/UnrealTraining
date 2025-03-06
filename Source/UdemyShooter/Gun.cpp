@@ -27,7 +27,7 @@ void AGun::BeginPlay()
 	Super::BeginPlay();
 
 	ammoCount = MagazineCapacity;
-	totalAmmoCount = MaxAmmoCount;
+	totalAmmoCount = MaxAmmoCount - MagazineCapacity;
 }
 
 // Called every frame
@@ -111,11 +111,22 @@ void AGun::Reload()
 {
 	if (totalAmmoCount > 0) {
 		int amountToRefill = MagazineCapacity - ammoCount;
-		int availableAmountToRefil = totalAmmoCount > amountToRefill ? totalAmmoCount : amountToRefill;
+
+		int availableAmountToRefil = totalAmmoCount < amountToRefill ? totalAmmoCount : amountToRefill;
 
 		UpdateAmmoCount(availableAmountToRefil * -1);
 
 		ammoCount = availableAmountToRefil;
 	}
+}
+
+float AGun::GetMagazineRemainingAmmoRatio() const
+{
+	return ammoCount / MagazineCapacity;
+}
+
+int AGun::GetTotalRemainingAmmo() const
+{
+	return totalAmmoCount;
 }
 

@@ -23,6 +23,12 @@ public:
 		totalAmmoCount = FMath::Clamp(totalAmmoCount + count, 0, MaxAmmoCount);
 	}
 
+	UFUNCTION(BlueprintPure)
+		float GetMagazineRemainingAmmoRatio() const;
+
+	UFUNCTION(BlueprintPure)
+		int GetTotalRemainingAmmo() const;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

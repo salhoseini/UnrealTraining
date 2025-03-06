@@ -13,26 +13,9 @@ UGadgetComponent::UGadgetComponent()
 	// ...
 }
 
-
-// Called when the game starts
-void UGadgetComponent::BeginPlay()
+void UGadgetComponent::ApplyGadgetEffect(AShooterCharacter* ShooterCharacter)
 {
-	Super::BeginPlay();
-
-	// ...
-	
+	ApplyGadgetEffect_Impl(ShooterCharacter);
 }
 
-
-// Called every frame
-void UGadgetComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
-
-void UGadgetComponent::ApplyGadgetEffect(AShooterCharacter* ShooterCharacter) const
-{
-}
 
