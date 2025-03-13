@@ -25,4 +25,10 @@ public:
 
 	virtual void Consume(class AShooterCharacter* ShooterCharacter);
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		UStaticMeshComponent* GadgetMesh;
+
+private:
+	class UGadgetComponent* GadgetComponent;
+
 };

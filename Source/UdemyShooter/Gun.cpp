@@ -25,6 +25,9 @@ AGun::AGun()
 void AGun::BeginPlay()
 {
 	Super::BeginPlay();
+
+	ammoCount = MagazineCapacity;
+	totalAmmoCount = MaxAmmoCount - MagazineCapacity;
 }
 
 // Called every frame
@@ -63,7 +66,11 @@ AController* AGun::GetOwnerController() const
 }
 
 void AGun::PullTrigger() {
-
+	if (ammoCount <= 0) {
+		// play empty clicking sound
+		return;
+	}
+	ammoCount--;
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, Mesh, TEXT("MuzzleFlashSocket"));
 	UGameplayStatics::SpawnSoundAttached(MuzzleSound, Mesh, TEXT("MuzzleFlashSocket"));
 	FHitResult HitResult;
@@ -98,5 +105,28 @@ void AGun::PullTrigger() {
 		hitActor->TakeDamage(DamageToApply, DamageEvent, GetOwnerController(), this);
 	}
 
+}
+
+void AGun::Reload()
+{
+	if (totalAmmoCount > 0) {
+		int amountToRefill = MagazineCapacity - ammoCount;
+
+		int availableAmountToRefil = totalAmmoCount < amountToRefill ? totalAmmoCount : amountToRefill;
+		ammoCount += availableAmountToRefil;
+		UpdateAmmoCount(availableAmountToRefil * -1);
+
+		
+	}
+}
+
+float AGun::GetMagazineRemainingAmmoRatio() const
+{
+	return ammoCount / MagazineCapacity;
+}
+
+int AGun::GetTotalRemainingAmmo() const
+{
+	return totalAmmoCount;
 }
 

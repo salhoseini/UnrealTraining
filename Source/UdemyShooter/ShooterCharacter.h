@@ -47,6 +47,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 		UInputAction* InteractAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		UInputAction* ReloadAction;
 	
 
 private:
@@ -62,6 +65,8 @@ private:
 	void ShootGun(const FInputActionValue& ShootValue);
 
 	void Pickup(const FInputActionValue& PickupValue);
+
+	void Reload(const FInputActionValue& ReloadValue);
 
 	UPROPERTY(EditDefaultsOnly)
 		float MaxHealth = 100;
@@ -83,6 +88,8 @@ private:
 
 	float ShootTimePassed = ShootInterval;
 
+	bool isShooting;
+
 
 public:	
 
@@ -95,7 +102,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
+	// Called to bind functionality to input 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
@@ -105,6 +112,12 @@ public:
 	void UpdateHealth(float UpdateValue) {
 		Health = FMath::Clamp(Health + UpdateValue, 0, MaxHealth);
 	}
+
+	UFUNCTION(BlueprintPure)
+		AGun* GetCurrentGun();
+
+	UPROPERTY(BlueprintReadWrite)
+		bool IsShooting;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components")
 		class UDetectionCone* DetectionCone;
