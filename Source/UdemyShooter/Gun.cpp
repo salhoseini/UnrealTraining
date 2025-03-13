@@ -113,10 +113,10 @@ void AGun::Reload()
 		int amountToRefill = MagazineCapacity - ammoCount;
 
 		int availableAmountToRefil = totalAmmoCount < amountToRefill ? totalAmmoCount : amountToRefill;
-
+		ammoCount += availableAmountToRefil;
 		UpdateAmmoCount(availableAmountToRefil * -1);
 
-		ammoCount = availableAmountToRefil;
+		
 	}
 }
 
