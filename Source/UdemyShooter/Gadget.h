@@ -37,8 +37,6 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<UUserWidget> GadgetWidgetClass;
 
-	UFUNCTION(BlueprintPure)
-		UStaticMeshComponent* GetGadgetMesh() const;
 
 private:
 	class UGadgetComponent* GadgetComponent;

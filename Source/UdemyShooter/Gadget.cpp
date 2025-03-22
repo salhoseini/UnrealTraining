@@ -54,8 +54,3 @@ void AGadget::Consume(AShooterCharacter* ShooterCharacter)
 	Destroy();
 }
 
-UStaticMeshComponent* AGadget::GetGadgetMesh() const
-{
-	return GadgetMesh;
-}
-
