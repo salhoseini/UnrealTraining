@@ -23,4 +23,14 @@ public:
 
 	virtual void ApplyGadgetEffect_Impl(class AShooterCharacter* ShooterCharacter) PURE_VIRTUAL(UGadgetComponent::ApplyGadgetEffect) ;
 
+	FString GetGadgetName() {
+		return GadgetName;
+	}
+
+	float GetGadgetValue();
+
+	virtual float GetGadgetValue_Impl() PURE_VIRTUAL(UGadgetComponent::GetGadgetValue, return 0.0f;);
+
+	UPROPERTY(EditAnywhere)
+		FString GadgetName = "Gadget";
 };

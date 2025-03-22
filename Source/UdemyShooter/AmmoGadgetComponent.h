@@ -19,6 +19,8 @@ public:
 
 	virtual void ApplyGadgetEffect_Impl(class AShooterCharacter* ShooterCharacter) override;
 
+	virtual float GetGadgetValue_Impl() override;
+
 private:
 	UPROPERTY(EditAnywhere)
 		float AmmoCount = 10;

@@ -20,3 +20,9 @@ void UAmmoGadgetComponent::ApplyGadgetEffect_Impl(AShooterCharacter* ShooterChar
 	}
 	Gun->UpdateAmmoCount(AmmoCount);
 }
+
+float UAmmoGadgetComponent::GetGadgetValue_Impl()
+{
+	return AmmoCount;
+}
+

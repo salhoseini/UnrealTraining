@@ -17,4 +17,9 @@ void UGadgetComponent::ApplyGadgetEffect(AShooterCharacter* ShooterCharacter)
 	ApplyGadgetEffect_Impl(ShooterCharacter);
 }
 
+float UGadgetComponent::GetGadgetValue()
+{
+	return GetGadgetValue_Impl();
+}
+
 

@@ -16,3 +16,8 @@ void UHealthGadgetComponent::ApplyGadgetEffect_Impl(AShooterCharacter* ShooterCh
 	ShooterCharacter->UpdateHealth(ModifierValue);
 	
 }
+
+float UHealthGadgetComponent::GetGadgetValue_Impl()
+{
+	return ModifierValue;
+}

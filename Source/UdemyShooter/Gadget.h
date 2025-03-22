@@ -26,9 +26,23 @@ public:
 	virtual void Consume(class AShooterCharacter* ShooterCharacter);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		USceneComponent* GadgetRoot;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* GadgetMesh;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		class UWidgetComponent* WidgetRoot;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<UUserWidget> GadgetWidgetClass;
+
+	UFUNCTION(BlueprintPure)
+		UStaticMeshComponent* GetGadgetMesh() const;
 
 private:
 	class UGadgetComponent* GadgetComponent;
+
+	UUserWidget* GadgetWidget;
 
 };
