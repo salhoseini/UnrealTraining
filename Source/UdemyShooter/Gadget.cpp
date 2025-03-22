@@ -25,9 +25,9 @@ void AGadget::BeginPlay()
 	Super::BeginPlay();
 	USceneComponent* sceneComponent = GetRootComponent();
 	UE_LOG(LogTemp, Error, TEXT("Root : %s"), *sceneComponent->GetName());
-	//GadgetWidget = CreateWidget<UUserWidget>(GetWorld(), GadgetWidgetClass);
+	GadgetWidget = CreateWidget<UUserWidget>(GetWorld(), GadgetWidgetClass);
 	if (GadgetWidget != nullptr) {
-		//WidgetRoot->SetWidget(GadgetWidget);
+		WidgetRoot->SetWidget(GadgetWidget);
 	}
 	else {
 		UE_LOG(LogTemp, Error, TEXT("Gadget Widget is null"));
